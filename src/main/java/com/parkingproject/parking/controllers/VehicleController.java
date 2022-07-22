@@ -25,7 +25,6 @@ public class VehicleController {
 
     @Autowired
     private VehicleService vehicleService;
-    private List<Vehicle> listVehicles;
 
     @GetMapping("/list")
     public ResponseEntity<List<Vehicle>> getVehicles() {
