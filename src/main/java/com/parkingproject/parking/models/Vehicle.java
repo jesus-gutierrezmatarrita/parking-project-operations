@@ -1,5 +1,6 @@
 package com.parkingproject.parking.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +23,19 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
     private String licensePlate;
 
+    @Column
     private String carBrand;
 
+    @Column
     private String carModel;
 
+    @Column
     private String color;
 
+    @Column
     private int categoryId;
 
     
