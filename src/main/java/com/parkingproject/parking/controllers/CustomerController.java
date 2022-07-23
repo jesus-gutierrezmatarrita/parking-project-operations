@@ -47,7 +47,7 @@ public class CustomerController {
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
         try {
             Customer _customer = customerService
-                    .saveCustomer(new Customer(customer.getName(), customer.getLastname(), customer.getEmail(), customer.getPassword(), customer.getPhone()));
+                    .saveCustomer(new Customer(customer.getName(), customer.getLastname(),customer.getPassword(), customer.getEmail() , customer.getPhone()));
             return new ResponseEntity<>(_customer, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
