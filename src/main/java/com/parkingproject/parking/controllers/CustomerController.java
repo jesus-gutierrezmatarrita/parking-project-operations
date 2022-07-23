@@ -63,7 +63,7 @@ public class CustomerController {
             _customer.setLastname(customer.getLastname());
             _customer.setPassword(customer.getPassword());
             _customer.setEmail(customer.getEmail());
-            _customer.setName(customer.getName());
+            _customer.setPhone(customer.getPhone());
             return new ResponseEntity<>(customerService.saveCustomer(_customer), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
