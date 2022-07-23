@@ -47,7 +47,7 @@ public class AdministratorController {
     public ResponseEntity<Administrator> saveAdministrator(@RequestBody Administrator administrator) {
         try {
             Administrator _administrator = administratorService
-                    .saveAdministrator(new Administrator(administrator.getName(), administrator.getLastname(), administrator.getEmail(), administrator.getPassword(), administrator.getPhone()));
+                    .saveAdministrator(new Administrator(administrator.getName(), administrator.getLastname(), administrator.getPassword(), administrator.getEmail(), administrator.getPhone()));
             return new ResponseEntity<>(_administrator, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,7 +63,7 @@ public class AdministratorController {
             _admin.setLastname(administrator.getLastname());
             _admin.setPassword(administrator.getPassword());
             _admin.setEmail(administrator.getEmail());
-            _admin.setName(administrator.getName());
+            _admin.setPhone(administrator.getPhone());
             return new ResponseEntity<>(administratorService.saveAdministrator(_admin), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
