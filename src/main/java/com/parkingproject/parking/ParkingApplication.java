@@ -18,7 +18,8 @@ public class ParkingApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://parking-project-ui.herokuapp.com").allowedMethods("*").allowedHeaders("*");
+				//registry.addMapping("/**").allowedOrigins("https://parking-project-ui.herokuapp.com").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("http://localhost:8080").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
