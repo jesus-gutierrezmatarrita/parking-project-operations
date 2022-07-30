@@ -2,6 +2,8 @@ package com.parkingproject.parking.controllers;
 
 import com.parkingproject.parking.models.Customer;
 import com.parkingproject.parking.services.CustomerService;
+import com.parkingproject.parking.services.PdfCustomerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    private PdfCustomerService pdfCustomerService;
     private List<Customer> listCustomer;
 
     @GetMapping("/list")
@@ -88,6 +96,21 @@ public class CustomerController {
           } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
           }
+    }
+
+    @GetMapping("/pdf")
+    public void downloadPdf(HttpServletResponse response){
+        try{
+            Path file = Paths.get(pdfCustomerService.generateCustomerPdf().getAbsolutePath());
+            if (Files.exists(file)){
+                response.setContentType("application/pdf");
+                response.addHeader("Content-Disposition", "attachment; filename"+ file.getFileName());
+                Files.copy(file, response.getOutputStream());
+                response.getOutputStream().flush();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
